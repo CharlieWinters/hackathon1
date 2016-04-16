@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 admin = Admin(app, name='pingins', template_mode='bootstrap3')
+app.secret_key='daahackathon'
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -27,4 +28,4 @@ api_manager = APIManager(app, flask_sqlalchemy_db=db)
 api_manager.create_api(User, methods=['GET', 'POST', 'DELETE', 'PUT'])
 
 if __name__ == "__main__":
-    app.run()
+    app.run('0.0.0.0', port=80)
