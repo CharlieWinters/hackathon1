@@ -52,11 +52,11 @@ def hello():
     result = api.service.Metar('KAUS')
 
     # Get the flights enroute
-    result = api.service.Scheduled('EIDW', 10, '', 0)
+    result = api.service.Scheduled('EIDW', 30, '', 0)
     flights = result['scheduled']
     flightlisting = []
-    flightdict = {}
-    flightsdict = {}
+    # flightdict = {}
+    # flightsdict = {}
     for flight in flights:
         flightdict = {}
         flightdict['flightnumber'] = flight['ident']
@@ -65,7 +65,7 @@ def hello():
         flightdict['filed_departuretime'] = flight['filed_departuretime']
         #flightsdict[flight['ident']] = flightdict
         flightlisting.append(flightdict)
-    flightlisting.append(flightsdict)
+    # flightlisting.append(flightsdict)
     resp = Response(response=json.dumps(flightlisting),
                     status=200,
                     mimetype="application/json")
